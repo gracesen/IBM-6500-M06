@@ -1,0 +1,78 @@
+/* ===== Background ===== */
+.reveal {
+  background: #FAF7F2;
+  color: #333333;
+  font-size: 34px;
+  line-height: 1.5;
+}
+
+/* ===== Slide titles ===== */
+.reveal h1 {
+  color: #6B1E2B;
+  font-size: 2.2em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+}
+
+.reveal h2 {
+  color: #8A3B4A;
+  font-size: 1.6em;
+  margin-bottom: 0.5em;
+}
+
+.reveal h3 {
+  color: #A46A4F;
+}
+
+/* ===== Body text ===== */
+.reveal p,
+.reveal li {
+  font-size: 1.1em;
+  color: #333333;
+}
+
+/* ===== Bullet spacing ===== */
+.reveal ul {
+  margin-top: 20px;
+}
+
+.reveal li {
+  margin-bottom: 12px;
+}
+
+/* ===== Links ===== */
+.reveal a {
+  color: #A46A4F;
+}
+
+/* ===== Tables ===== */
+.reveal table {
+  font-size: 0.9em;
+}
+
+.reveal th {
+  background: #6B1E2B;
+  color: white;
+}
+
+.reveal td {
+  background: white;
+}
+
+/* ===== Code blocks ===== */
+.reveal pre {
+  font-size: 0.7em;
+  border-radius: 10px;
+}
+
+/* ===== Images ===== */
+.reveal img {
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+/* ===== Footer ===== */
+.reveal .footer {
+  color: #777777;
+  font-size: 18px;
+}

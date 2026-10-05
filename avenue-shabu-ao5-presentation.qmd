@@ -1,0 +1,237 @@
+---
+title: "Avenue Shabu Promotion Performance"
+subtitle: "AO5 Proposal Presentation"
+author: "Grace Sen"
+institute: "MSDM Culminating Experience Project, Cal Poly Pomona"
+date: "`r Sys.Date()`"
+format:
+  revealjs:
+    theme: serif
+    width: 1600
+    height: 900
+    footer: "Avenue Shabu Promotion Performance"
+    transition: slide
+    transition-speed: default
+    incremental: false
+    toc: true
+    toc-depth: 1
+    slide-number: true
+    scrollable: true
+    smaller: true
+    code-fold: false
+    code-overflow: wrap
+    number-sections: false
+    embed-resources: true
+    css: styles.css
+editor: visual
+execute:
+  echo: true
+  freeze: auto
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(dplyr)
+library(tibble)
+library(knitr)
+```
+
+# Introduction
+
+## Business Problem
+
+Avenue Shabu uses promotions and marketing campaigns to attract customers, but higher sales do not always mean that a promotion is profitable.
+
+The restaurant needs a practical way to compare campaigns after considering discounts, food and labor costs, marketing expenses, and seasonal differences.
+
+::: notes
+For this presentation, I am focusing on AO5. The main issue is that a promotion can increase sales but still produce a weak financial return when its costs are too high.
+:::
+
+## Analytics Objective
+
+> **AO5:** Identify the most profitable promotion types by measuring incremental customer traffic and contribution margin.
+
+The analysis will help the restaurant decide which promotions to continue, modify, expand, or discontinue.
+
+::: notes
+The wording is intentionally careful. Because Avenue does not consistently track individual customers or promotion codes, the analysis can identify associations at the daily or weekly level but cannot prove that every sale came from a specific campaign.
+:::
+
+## Why This Matters
+
+::::: columns
+::: {.column width="50%"}
+### Business Use
+
+- Compare campaign results using consistent measures
+- Consider both sales and costs
+- Support future budget decisions
+:::
+
+::: {.column width="50%"}
+### Current Challenge
+
+- Limited customer-level tracking
+- Inconsistent promotion codes
+- Different campaigns run during different seasons
+:::
+:::::
+
+::: notes
+The analysis needs to fit the data that Avenue actually has. For that reason, the project will focus mainly on aggregate daily and weekly performance.
+:::
+
+# Literature Review
+
+## Analytical Framework
+
+The literature supports three measures for reviewing campaign performance:
+
+::: incremental
+- **Promotional lift** compares observed sales with an expected baseline.
+- **Contribution margin** shows whether added revenue remains after variable costs.
+- **Return on marketing investment** compares the financial return with campaign spending.
+:::
+
+These measures provide different views of performance. Using them together gives a more complete result than looking at sales alone.
+
+::: notes
+Promotional lift measures the change in sales. Contribution margin checks whether those sales remain profitable. ROMI helps compare the return with the amount spent on the campaign.
+:::
+
+## Limits of Sales Lift
+
+Higher sales during a promotion do not automatically mean that the promotion created new demand.
+
+- Some customers may have visited without the promotion.
+- Some may have changed the timing of a planned visit.
+- Seasonal demand may explain part of the increase.
+
+::: aside
+The analysis will compare promotion periods with similar non-promotion periods whenever the available data allows it.
+:::
+
+::: notes
+This is why the comparison period matters. A holiday weekend should not be compared directly with a normal weekday without considering the difference in demand.
+:::
+
+# Methods
+
+## Data and Sampling
+
+The proposed analysis will use available records from Avenue Shabu:
+
+- Toast sales data
+- Food and labor costs
+- Profit-and-loss information
+- Marketing expenses
+- Promotion records
+- Influencer campaign history
+
+The unit of analysis will mainly be the **day or week**, depending on the completeness of each source.
+
+::: notes
+We will first confirm the date coverage and level of detail for each source. The final comparison period will depend on the amount of complete data available.
+:::
+
+## Data Preparation
+
+1.  Standardize dates and campaign names.
+2.  Join sales, cost, and promotion records by date or campaign period.
+3.  Create indicators for promotion and non-promotion periods.
+4.  Check missing values, duplicate records, and unusual sales days.
+5.  Build comparable time periods by weekday and season.
+
+::: notes
+The main challenge will be connecting files that may use different date formats or campaign names. We will document every cleaning decision so the process can be repeated.
+:::
+
+## Reproducible Analysis Plan
+
+```{r}
+#| label: tbl-analysis-plan
+#| echo: false
+#| tbl-cap: "AO5 measures and business uses"
+
+analysis_plan <- tribble(
+  ~Measure, ~Calculation, ~Business_Use,
+  "Promotional lift", "Promotion sales compared with baseline sales", "Shows the change in sales activity",
+  "Contribution margin", "Revenue minus relevant variable costs", "Checks whether added sales remain profitable",
+  "ROMI", "Incremental return compared with marketing cost", "Compares returns across campaigns"
+)
+
+analysis_plan |>
+  kable(
+    col.names = c("Measure", "Basic Calculation", "Business Use"),
+    align = c("l", "l", "l")
+  )
+```
+
+::: notes
+This table is created directly from R code, so it can be updated in one place if the team revises the analysis plan.
+:::
+
+## Planned Analysis
+
+::::: columns
+::: {.column width="52%"}
+### Comparisons
+
+- Promotion versus comparable non-promotion periods
+- Results across promotion types
+- Daily and weekly performance
+- Results within different seasons
+:::
+
+::: {.column width="48%"}
+### Main Outputs
+
+- Sales lift
+- Contribution margin
+- ROMI
+- Recommendation for each promotion type
+:::
+:::::
+
+::: notes
+The goal is to create comparisons that Avenue can understand and reuse. Recommendations will consider performance and the marketing budget rather than simply selecting the campaign with the highest total sales.
+:::
+
+## Expected Contribution
+
+The project will give Avenue Shabu a repeatable way to review promotions using its existing business data.
+
+The final recommendations will distinguish between:
+
+::: fragment
+- promotions associated with stronger financial performance;
+:::
+
+::: fragment
+- promotions that increase sales but require high spending; and
+:::
+
+::: fragment
+- promotions that need better tracking before Avenue can evaluate them confidently.
+:::
+
+::: notes
+This framework should help Avenue make decisions that fit its actual budget and data limitations.
+:::
+
+# References
+
+## References {.smaller}
+
+Farris, P. W., Bendle, N. T., Pfeifer, P. E., and Reibstein, D. J. (2010). *Marketing Metrics: The Definitive Guide to Measuring Marketing Performance*. Pearson Education.
+
+Hanssens, D. M., and Pauwels, K. H. (2016). Demonstrating the value of marketing. *Journal of Marketing*, 80(6), 173–190.
+
+# Appendix
+
+## Publication Links
+
+- [GitHub Repository](https://github.com/gracesen/IBM-6500-M06)
+- [Published Revealjs Presentation](PASTE-YOUR-PUBLISHED-PRESENTATION-URL-HERE)
